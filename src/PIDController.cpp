@@ -1,29 +1,30 @@
 #include "PIDController.h"
 
-PIDController::PIDController () {
-  // Variables - double
-  double output;
-  double lastErr;
-  double errSum;
+PIDController::PIDController () 
+  : lastTime(0),
+    output(0),
+    lastErr(0),
+    timeChanged(0),
+    error(0),
+    errSum(0),
+    dErr(0),
+    doLimit(false),
+    init(false),
+    Kp(0),
+    Ki(0),
+    Kd(0),
+    divisor(0),
+    minOut(0),
+    maxOut(0),
+    setPoint(0)
+{
 
-  // Variables - long
-  unsigned long lastTime;
-
-  // Variables - bool
-  bool doConstrain;
-  bool init;
-
-  // Variables - double - tuining
-  double Kp;
-  double Ki;
-  double Kd;
-  double divisor;
-  double minOut;
-  double maxOut;
-  double setPoint;
 }
 
 void PIDController::begin () {
+  lastErr = 0;
+  errSum = 0;
+  lastTime = millis();
   Kp = 1;
   Ki = 1;
   Kd = 1;
