@@ -29,6 +29,8 @@ class PIDController {
 
     // Methods - double, getters
     double getOutput();
+
+    double getErrorSum()        { return errSum;}
   private:
     // Methods
     void printGraph(double sensorInput, String verbose);
